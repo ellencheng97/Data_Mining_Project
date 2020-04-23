@@ -82,7 +82,7 @@ def mkdir(path):
         return
 
 
-def main():
+def main(_):
     train_file = './dataset/voc2012/ImageSets/Segmentation/train.txt'
     val_file = './dataset/voc2012/ImageSets/Segmentation/val.txt'
     train_list = []
