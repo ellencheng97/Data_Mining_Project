@@ -120,3 +120,15 @@ dmypy.json
 
 # MacOS
 .DS_Store
+
+*.tfrecord
+Annotations/
+ImageSets/
+JPEGImages/
+SegmentationClass/
+SegmentationClassRaw/
+SegmentationObject/
+SegmentationClassAug/
+
+*.jpg
+*.png
