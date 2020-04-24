@@ -99,6 +99,7 @@ def main(_):
             val_list.append(line)
     f.close()
 
+    aug_train = list(listdir_nohidden('./dataset/voc2012/SegmentationClassAug'))
     train_img_path = './dataset/images/train/img'  # Path to the directory containing train set image.
     train_label_path = './dataset/images/train/label'  # Path to the directory containing train set label.
     val_img_path = './dataset/images/val/img'  # Path to the directory containing val set image.
@@ -110,7 +111,8 @@ def main(_):
     mkdir(val_label_path)
 
     img_path = './dataset/voc2012/JPEGImages'
-    label_path = './dataset/voc2012/SegmentationClass'
+    label_path = './dataset/voc2012/SegmentationClassRaw'
+    aug_path = './dataset/voc2012/SegmentationClassAug'
 
     for file in list(listdir_nohidden(img_path)):
         if file in train_list:
@@ -121,16 +123,10 @@ def main(_):
             shutil.copy(os.path.join(img_path, file + '.jpg'), os.path.join(val_img_path, file + '.jpg'))
             shutil.copy(os.path.join(label_path, file + '.png'), os.path.join(val_label_path, file + '.png'))
             print(f'copy {file} to valset!')
-        else:
-            continue
-
-    _convert_dataset('train', train_img_path, train_label_path)
-    _convert_dataset('val', val_img_path, val_label_path)
-
-if __name__ == '__main__':
-    tf.compat.v1.app.run()
-th, file + '.png'))
-            print(f'copy {file} to valset!')
+        elif file in aug_train:
+            shutil.copy(os.path.join(img_path, file + '.jpg'), os.path.join(train_img_path, file + '.jpg'))
+            shutil.copy(os.path.join(aug_path, file + '.png'), os.path.join(train_label_path, file + '.png'))
+            print(f'copy {file} to trainset!')
         else:
             continue
 
