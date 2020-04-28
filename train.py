@@ -103,7 +103,7 @@ val_dataset = val_dataset.repeat()
 val_dataset = val_dataset.prefetch(tf.data.experimental.AUTOTUNE)
 
 
-loss = tf.losses.SparseCategoricalCrossentropy(from_logits=True)
+loss = tf.losses.CategoricalCrossentropy(from_logits=True)
 strategy = tf.distribute.MirroredStrategy()
 with strategy.scope():
     model = DeepLabV3Plus(H, W, num_classes)
@@ -126,7 +126,7 @@ mc = ModelCheckpoint(mode='min', filepath='top_weights.h5',
 callbacks = [mc, tb]
 model.fit(train_dataset,
           steps_per_epoch=10582 // batch_size,
-          epochs=300,
+          epochs=1000,
           validation_data=val_dataset,
           validation_steps=1449 // batch_size,
           callbacks=callbacks)
