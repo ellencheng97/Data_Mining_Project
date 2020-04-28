@@ -3,7 +3,7 @@ from tensorflow.keras.callbacks import TensorBoard, ModelCheckpoint
 from deeplab import DeepLabV3Plus
 
 
-batch_size = 1
+batch_size = 12
 H, W = 512, 512
 num_classes = 21
 
